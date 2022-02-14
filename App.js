@@ -11,6 +11,7 @@ import {
   InriaSans_700Bold_Italic,
 } from "@expo-google-fonts/inria-sans";
 import Home from "./screens/Home";
+import StackNav from "./routes/HomeStackNav";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,7 +25,7 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    return <Home />;
+    return <StackNav />;
   }
 }
 
