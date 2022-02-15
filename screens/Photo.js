@@ -3,7 +3,7 @@ import React from "react";
 
 const Photo = ({ navigation }) => {
   const handlePress = () => {
-    navigation.popToTop();
+    navigation.pop();
   };
   return (
     <View style={styles.container}>
