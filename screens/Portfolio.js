@@ -3,7 +3,7 @@ import React from "react";
 
 const Portfolio = ({ navigation }) => {
   const handlePress = () => {
-    navigation.replace("Photo");
+    navigation.navigate("Photo");
   };
   return (
     <View style={styles.container}>

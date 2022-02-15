@@ -3,12 +3,12 @@ import React from "react";
 
 const Photo = ({ navigation }) => {
   const handlePress = () => {
-    navigation.goBack();
+    navigation.popToTop();
   };
   return (
     <View style={styles.container}>
       <Text>Photo</Text>
-      <Button title="Vers Portfolio" onPress={handlePress} />
+      <Button title="Vers Home" onPress={handlePress} />
     </View>
   );
 };
