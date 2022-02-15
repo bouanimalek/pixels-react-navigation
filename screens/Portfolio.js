@@ -1,10 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 
-const Portfolio = () => {
+const Portfolio = ({ navigation }) => {
+  const handlePress = () => {
+    navigation.replace("Photo");
+  };
   return (
     <View style={styles.container}>
       <Text>Portfolio</Text>
+      <Button title="Vers Photo" onPress={handlePress} />
     </View>
   );
 };
