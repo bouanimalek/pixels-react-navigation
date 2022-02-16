@@ -1,5 +1,6 @@
 import { FlatList, View, Text, Image, Pressable } from "react-native";
 import { globalStyles } from "../styles/AppStyles";
+import Colors from "../styles/Colors";
 
 const Home = ({ navigation }) => {
   const DATA = [
@@ -40,7 +41,10 @@ const Home = ({ navigation }) => {
   const renderProfiles = ({ item }) => {
     return (
       <Pressable
-        style={globalStyles.profileItem}
+        style={({ pressed }) => [
+          { backgroundColor: pressed ? Colors.clicked : Colors.white },
+          globalStyles.profileItem,
+        ]}
         onPress={() => navigation.navigate("Portfolio", item)}
       >
         <Text style={globalStyles.titleText}>{item.name}</Text>

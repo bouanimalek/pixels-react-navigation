@@ -30,8 +30,8 @@ export const globalStyles = StyleSheet.create({
     padding: 15,
     alignItems: "center",
   },
-  // text: {
-  //   fontFamily: "InriaSans_700Bold_Italic",
-  //   fontSize: 25,
-  // },
+  text: {
+    fontFamily: "InriaSans_700Bold_Italic",
+    fontSize: 25,
+  },
 });
