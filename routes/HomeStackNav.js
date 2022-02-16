@@ -10,25 +10,43 @@ const screens = {
     screen: Home,
     navigationOptions: {
       title: "Accueil",
-      headerStyle: {
-        backgroundColor: Colors.lightBrown,
-      },
+      // headerStyle: {
+      //   backgroundColor: Colors.lightBrown,
+      // },
     },
   },
   Portfolio: {
     screen: Portfolio,
     navigationOptions: {
       title: "Profil",
-      headerStyle: {
-        backgroundColor: Colors.lightBrown,
-      },
+      // headerStyle: {
+      //   backgroundColor: Colors.lightBrown,
+      // },
     },
   },
   Photo: {
     screen: Photo,
+    navigationOptions: {
+      title: "Photo",
+      // headerStyle: {
+      //   backgroundColor: Colors.lightBrown,
+      // },
+    },
   },
 };
 
-const StackNav = createStackNavigator(screens);
+const defaultNavigationOptions = {
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: Colors.lightBrown,
+    },
+    headerTintColor: Colors.white,
+    headerTitleStyle: {
+      fontWeight: "bold",
+      fontSize: 25,
+    },
+  },
+};
+const StackNav = createStackNavigator(screens, defaultNavigationOptions);
 
 export default createAppContainer(StackNav);
