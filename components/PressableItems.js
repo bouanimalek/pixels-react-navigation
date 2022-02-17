@@ -1,0 +1,26 @@
+import { Text, View, Pressable, Image } from "react-native";
+import React from "react";
+import { globalStyles } from "../styles/AppStyles";
+
+import Colors from "../styles/Colors";
+
+const PressableItems = ({ item, handleNavigate }) => {
+  return (
+    <Pressable
+      style={({ pressed }) => [
+        { backgroundColor: pressed ? Colors.clicked : Colors.white },
+        globalStyles.profileItem,
+      ]}
+      onPress={handleNavigate}
+    >
+      <Text style={globalStyles.titleText}>{item.name}</Text>
+      <Image source={{ uri: item.img }} style={globalStyles.profileImg} />
+      <View style={globalStyles.infoContainer}>
+        <Text style={globalStyles.infos}>{item.country}</Text>
+        <Text style={globalStyles.infos}>{item.totalImg}</Text>
+      </View>
+    </Pressable>
+  );
+};
+
+export default PressableItems;
