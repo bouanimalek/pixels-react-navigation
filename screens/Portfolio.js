@@ -1,7 +1,15 @@
 import React from "react";
 import { Text, View, Image, Platform, Button } from "react-native";
+import {
+  HeaderButtons,
+  HeaderButton,
+  Item,
+  HiddenItem,
+  OverflowMenu,
+} from "react-navigation-header-buttons";
 import { globalStyles } from "../styles/AppStyles";
 import Colors from "../styles/Colors";
+import MaterialIconsHeader from "../components/MaterialIconsHeader";
 
 const Logo = () => {
   return (
@@ -44,11 +52,18 @@ Portfolio.navigationOptions = (navigationData) => {
     },
     headerTintColor: Colors.white,
     headerRight: () => (
-      <Button
-        onPress={() => alert("Dans composant")}
-        title="Info"
-        // color="#fff"
-      />
+      <HeaderButtons HeaderButtonComponent={MaterialIconsHeader}>
+        <Item
+          title="info"
+          iconName="info-outline"
+          onPress={() => alert("Portfolio de " + name)}
+        />
+        <Item
+          title="infoTwo"
+          iconName="info"
+          onPress={() => alert("Portfolio de " + name)}
+        />
+      </HeaderButtons>
     ),
   };
 };
