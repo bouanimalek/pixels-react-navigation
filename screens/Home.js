@@ -2,6 +2,14 @@ import { FlatList, View } from "react-native";
 import PressableItems from "../components/PressableItems";
 import { globalStyles } from "../styles/AppStyles";
 import Colors from "../styles/Colors";
+import {
+  HeaderButtons,
+  HeaderButton,
+  Item,
+  HiddenItem,
+  OverflowMenu,
+} from "react-navigation-header-buttons";
+import MaterialIconsHeader from "../components/MaterialIconsHeader";
 
 const Home = ({ navigation }) => {
   const DATA = [
@@ -71,6 +79,18 @@ const Home = ({ navigation }) => {
       />
     </View>
   );
+};
+
+Home.navigationOptions = {
+  headerLeft: () => (
+    <HeaderButtons HeaderButtonComponent={MaterialIconsHeader}>
+      <Item
+        title="menu"
+        iconName="menu"
+        onPress={() => alert("Afficher le menu latéral")}
+      />
+    </HeaderButtons>
+  ),
 };
 
 export default Home;

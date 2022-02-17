@@ -7,7 +7,7 @@ const MaterialIconsHeader = (props) => {
   return (
     <HeaderButton
       IconComponent={MaterialIcons}
-      iconSize={23}
+      iconSize={30}
       {...props}
       color={Colors.white}
     />
