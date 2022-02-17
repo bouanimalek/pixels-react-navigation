@@ -1,5 +1,5 @@
-import { Text, View, Image, Platform } from "react-native";
 import React from "react";
+import { Text, View, Image, Platform, Button } from "react-native";
 import { globalStyles } from "../styles/AppStyles";
 import Colors from "../styles/Colors";
 
@@ -43,6 +43,13 @@ Portfolio.navigationOptions = (navigationData) => {
       backgroundColor: favColor,
     },
     headerTintColor: Colors.white,
+    headerRight: () => (
+      <Button
+        onPress={() => alert("Dans composant")}
+        title="Info"
+        // color="#fff"
+      />
+    ),
   };
 };
 export default Portfolio;
