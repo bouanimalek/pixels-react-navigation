@@ -3,10 +3,11 @@ import { createAppContainer } from "react-navigation";
 import StackNav from "./HomeStackNav";
 import FaqStackNav from "./FaqStackNav";
 import Colors from "../styles/Colors";
+import BottomTabNav from "./BottomTabNav";
 
 const RouteConfig = {
   Home: {
-    screen: StackNav,
+    screen: BottomTabNav,
     navigationOptions: {
       drawerLabel: "Accueil",
     },
@@ -21,7 +22,7 @@ const RouteConfig = {
 
 const DrawerNavigatorConfig = {
   hideStatusBar: true,
-  drawerBackgroundColor: "grey",
+  drawerBackgroundColor: Colors.darkGrey,
   drawerWidth: 110,
   drawerType: "slide",
   contentOptions: {
