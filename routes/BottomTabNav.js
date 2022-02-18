@@ -5,6 +5,7 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import Selected from "../screens/Selected";
 import StackNav from "./HomeStackNav";
 import Colors from "../styles/Colors";
+import SelectedStackNav from "./SelectedStackNav";
 
 const RouteConfigs = {
   Home: {
@@ -18,7 +19,7 @@ const RouteConfigs = {
     },
   },
   Likes: {
-    screen: Selected,
+    screen: SelectedStackNav,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons name="thumb-up" size={24} color={tintColor} />
