@@ -2,12 +2,12 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import React, { useEffect } from "react";
 
 const Photo = ({ navigation }) => {
-  useEffect(() => {
-    console.log("Photo est monté");
-    return () => {
-      console.log("Photo est démonté");
-    };
-  }, []);
+  // useEffect(() => {
+  //   console.log("Photo est monté");
+  //   return () => {
+  //     console.log("Photo est démonté");
+  //   };
+  // }, []);
   const handlePress = () => {
     navigation.pop();
   };
