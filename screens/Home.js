@@ -1,14 +1,8 @@
 import { FlatList, View } from "react-native";
+import { DrawerActions } from "react-navigation-drawer";
 import PressableItems from "../components/PressableItems";
 import { globalStyles } from "../styles/AppStyles";
-import Colors from "../styles/Colors";
-import {
-  HeaderButtons,
-  HeaderButton,
-  Item,
-  HiddenItem,
-  OverflowMenu,
-} from "react-navigation-header-buttons";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import MaterialIconsHeader from "../components/MaterialIconsHeader";
 
 const Home = ({ navigation }) => {
@@ -90,7 +84,8 @@ Home.navigationOptions = ({ navigation }) => {
           iconName="menu"
           // navigation.toggleDrawer()
           // navigation.openDrawer()
-          onPress={() => navigation.toggleDrawer()}
+          // onPress={() => navigation.toggleDrawer()}
+          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
         />
       </HeaderButtons>
     ),
