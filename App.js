@@ -9,6 +9,8 @@ import {
   InriaSans_700Bold_Italic,
 } from "@expo-google-fonts/inria-sans";
 import MainNavigator from "./routes/DrawerNav";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,6 +24,10 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    return <MainNavigator />;
+    return (
+      <Provider store={store}>
+        <MainNavigator />
+      </Provider>
+    );
   }
 }
