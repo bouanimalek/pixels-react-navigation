@@ -5,7 +5,7 @@ const initialState = {
   selectedUsers: [],
   selectedCategories: DATA,
 };
-
+// Reducer
 const appReducer = (state = initialState, action) => {
   return state;
 };

@@ -1,12 +1,17 @@
 import { FlatList, View } from "react-native";
 import { DrawerActions } from "react-navigation-drawer";
-import PressableItems from "../components/PressableItems";
-import { globalStyles } from "../styles/AppStyles";
+import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import PressableItems from "../components/PressableItems";
 import MaterialIconsHeader from "../components/MaterialIconsHeader";
-import { DATA } from "../data/userData";
+import { globalStyles } from "../styles/AppStyles";
+import NoData from "../components/NoData";
 
 const Home = ({ navigation }) => {
+  const selectedCategories = useSelector(
+    (state) => state.users.selectedCategories
+  );
+
   const renderProfiles = ({ item }) => {
     return (
       <PressableItems
@@ -15,16 +20,20 @@ const Home = ({ navigation }) => {
       />
     );
   };
-
-  return (
-    <View style={globalStyles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={renderProfiles}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
-  );
+  if (selectedCategories.length === 0) {
+    //message
+    return <NoData>Pas d'utilisateur à afficher </NoData>;
+  } else {
+    return (
+      <View style={globalStyles.container}>
+        <FlatList
+          data={selectedCategories}
+          renderItem={renderProfiles}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+    );
+  }
 };
 
 Home.navigationOptions = ({ navigation }) => {
