@@ -68,13 +68,8 @@ Portfolio.navigationOptions = (navigationData) => {
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={MaterialIconsHeader}>
         <Item
-          title="info"
-          iconName="info-outline"
-          onPress={() => alert("Portfolio de " + name)}
-        />
-        <Item
-          title="infoTwo"
-          iconName="info"
+          title="Ajouter"
+          iconName="thumb-up"
           onPress={() => alert("Portfolio de " + name)}
         />
       </HeaderButtons>
