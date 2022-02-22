@@ -1,16 +1,12 @@
-import React from "react";
-import { View, Image, ScrollView, StyleSheet, Text } from "react-native";
-import {
-  HeaderButtons,
-  HeaderButton,
-  Item,
-  HiddenItem,
-  OverflowMenu,
-} from "react-navigation-header-buttons";
-import { globalStyles } from "../styles/AppStyles";
-import Colors from "../styles/Colors";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { View, Image, ScrollView, StyleSheet, Text, Alert } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import MaterialIconsHeader from "../components/MaterialIconsHeader";
 import TouchableImage from "../components/TouchableImage";
+import { setSelection } from "../redux/actions/actionSelection";
+import { globalStyles } from "../styles/AppStyles";
+import Colors from "../styles/Colors";
 
 // const Logo = () => {
 //   return (
@@ -21,11 +17,27 @@ import TouchableImage from "../components/TouchableImage";
 //   );
 // };
 const Portfolio = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const favColor = navigation.getParam("favColor");
   const name = navigation.getParam("name");
   const profilImg = navigation.getParam("img");
   const desc = navigation.getParam("desc");
   const photoArray = navigation.getParam("photos");
+  const userId = navigation.getParam("id");
+
+  const handleDispatch = useCallback(() => {
+    dispatch(setSelection(userId));
+    Alert.alert(
+      "Photo enregistrées",
+      "Elles sont disponible dans votre sélection",
+      [{ text: "Yes" }]
+    );
+  }, [dispatch, userId]);
+
+  useEffect(() => {
+    navigation.setParams({ handleLike: handleDispatch });
+  }, [handleDispatch]);
 
   const selectPhoto = (photo) => {
     navigation.navigate("Photo", photo);
@@ -58,6 +70,7 @@ const Portfolio = ({ navigation }) => {
 Portfolio.navigationOptions = (navigationData) => {
   const name = navigationData.navigation.getParam("name");
   const favColor = navigationData.navigation.getParam("favColor");
+  const handleLike = navigationData.navigation.getParam("handleLike");
 
   return {
     headerTitle: `Profil de ${name}`,
@@ -67,11 +80,7 @@ Portfolio.navigationOptions = (navigationData) => {
     headerTintColor: Colors.white,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={MaterialIconsHeader}>
-        <Item
-          title="Ajouter"
-          iconName="thumb-up"
-          onPress={() => alert("Portfolio de " + name)}
-        />
+        <Item title="Ajouter" iconName="thumb-up" onPress={handleLike} />
       </HeaderButtons>
     ),
   };
