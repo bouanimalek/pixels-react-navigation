@@ -8,6 +8,7 @@ import PressableItems from "../components/PressableItems";
 import MaterialIconsHeader from "../components/MaterialIconsHeader";
 import { globalStyles } from "../styles/AppStyles";
 import Colors from "../styles/Colors";
+import Settings from "../components/Settings";
 
 const Home = ({ navigation }) => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const Home = ({ navigation }) => {
             style={styles.modalClose}
             onPress={handleSettingsModal}
           />
+          <Settings closeModal={handleSettingsModal} />
         </View>
       </Modal>
       <FlatList
