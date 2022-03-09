@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { View, Image, ScrollView, StyleSheet, Text, Alert } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import MaterialIconsHeader from "../components/MaterialIconsHeader";
@@ -26,18 +26,32 @@ const Portfolio = ({ navigation }) => {
   const photoArray = navigation.getParam("photos");
   const userId = navigation.getParam("id");
 
+  const selectedUser = useSelector((state) =>
+    state.users.selectedUsers.some((user) => user.id === userId)
+  );
+
   const handleDispatch = useCallback(() => {
     dispatch(setSelection(userId));
-    Alert.alert(
-      "Photo enregistrées",
-      "Elles sont disponible dans votre sélection",
-      [{ text: "Yes" }]
-    );
-  }, [dispatch, userId]);
+    if (selectedUser) {
+      Alert.alert("Photos effacées", `Les photos de ${name} sont effacées`, [
+        { text: "Yes" },
+      ]);
+    } else {
+      Alert.alert(
+        "Photos enregistrées",
+        "Elles sont disponible dans votre sélection",
+        [{ text: "Yes" }]
+      );
+    }
+  }, [dispatch, userId, selectedUser]);
 
   useEffect(() => {
     navigation.setParams({ handleLike: handleDispatch });
   }, [handleDispatch]);
+
+  useEffect(() => {
+    navigation.setParams({ isSelected: selectedUser });
+  }, [selectedUser]);
 
   const selectPhoto = (photo) => {
     navigation.navigate("Photo", photo);
@@ -71,6 +85,7 @@ Portfolio.navigationOptions = (navigationData) => {
   const name = navigationData.navigation.getParam("name");
   const favColor = navigationData.navigation.getParam("favColor");
   const handleLike = navigationData.navigation.getParam("handleLike");
+  const isSelected = navigationData.navigation.getParam("isSelected");
 
   return {
     headerTitle: `Profil de ${name}`,
@@ -80,7 +95,11 @@ Portfolio.navigationOptions = (navigationData) => {
     headerTintColor: Colors.white,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={MaterialIconsHeader}>
-        <Item title="Ajouter" iconName="thumb-up" onPress={handleLike} />
+        <Item
+          title="Ajouter"
+          iconName={isSelected ? "delete" : "thumb-up"}
+          onPress={handleLike}
+        />
       </HeaderButtons>
     ),
   };
